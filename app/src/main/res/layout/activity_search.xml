@@ -24,7 +24,7 @@
             android:layout_marginLeft="20dp"/>
 
         <EditText
-            android:id="@+id/edt_search_Champ"
+            android:id="@+id/edtSearchChamp"
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintRight_toRightOf="parent"
@@ -39,7 +39,8 @@
             android:drawablePadding="10dp"
             android:padding="10dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="20dp"
+            android:inputType="text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
