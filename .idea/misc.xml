@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/drawable/button_custom.xml" value="0.172" />
+        <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/drawable/button_custom2.xml" value="0.188" />
         <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/drawable/edt_rounding.xml" value="0.2235" />
         <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/drawable/search_resize.xml" value="0.227" />
         <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/layout/activity_search.xml" value="0.1" />
+        <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/layout/activity_search.xml" value="0.264" />
+        <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/layout/champ_top_image_item.xml" value="0.16197916666666667" />
+        <entry key="..\:/Users/Donghwi/AndroidStudioProjects/RisnigCampW5/app/src/main/res/layout/champ_top_image_multi.xml" value="0.264" />
       </map>
     </option>
   </component>
