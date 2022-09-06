@@ -1,11 +1,10 @@
-package com.example.risingcampw5
+package com.example.risingcampw5.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.KeyEvent.KEYCODE_ENTER
-import com.example.risingcampw5.databinding.ActivityMainBinding
 import com.example.risingcampw5.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {

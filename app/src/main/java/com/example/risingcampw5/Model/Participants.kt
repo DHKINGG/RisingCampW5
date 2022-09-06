@@ -8,7 +8,7 @@ data class Participants(
     @SerializedName("kills") var kills: Int,
     @SerializedName("deaths") var deaths: Int,
     @SerializedName("assists") var assists: Int,
-    @SerializedName("Challenges") var Challenges: Float,
+    @SerializedName("challenges") var challenges: Challenges,
     @SerializedName("doubleKills") var doubleKills: Int,
     @SerializedName("tripleKills") var tripleKills: Int,
     @SerializedName("quadraKills") var quadraKills: Int,
