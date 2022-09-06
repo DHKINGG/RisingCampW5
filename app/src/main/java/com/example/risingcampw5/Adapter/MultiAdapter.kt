@@ -1,12 +1,16 @@
 package com.example.risingcampw5.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.risingcampw5.Model.Match
 import com.example.risingcampw5.Model.Summoner
+import com.example.risingcampw5.MyApplication
+import com.example.risingcampw5.R
 import com.example.risingcampw5.databinding.ItemViewMatchMultiBinding
 import com.example.risingcampw5.databinding.ItemViewTopInfoBinding
 
@@ -20,6 +24,12 @@ class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(item: Summoner) {
             binding.tvLevel.text = item.summonerLevel.toString()
             binding.tvSummonerNickname.text = item.name
+            Glide.with(adapterContext)
+                .load("${MyApplication.profileIconUrl}${item.profileIconId}.png")
+                .into(binding.ivSummonerProfile)
+            Glide.with(adapterContext)
+                .load("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg")
+                .into(binding.ivBackground)
         }
     }
 
@@ -31,6 +41,7 @@ class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             val recyclerAdapter = MatchAdapter()
             recyclerAdapter.list = item
             recyclerAdapter.summonerId = summonerId
+            recyclerAdapter.setContext(adapterContext)
             binding.rvGameResultMain.adapter = recyclerAdapter
         }
     }

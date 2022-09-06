@@ -72,60 +72,60 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_item_slot1"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_item_slot"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:riv_corner_radius="20dp"/>
 
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_item_slot2"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_item_slot"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:riv_corner_radius="20dp"
             app:layout_constraintLeft_toRightOf="@+id/iv_summoner_item_slot1" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_item_slot3"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_item_slot"
+            app:riv_corner_radius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_summoner_item_slot2" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_item_slot4"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_item_slot"
+            app:riv_corner_radius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_summoner_item_slot3" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_item_slot5"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_item_slot"
+            app:riv_corner_radius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_summoner_item_slot4" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_item_slot6"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_item_slot"
+            app:riv_corner_radius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_summoner_item_slot5" />
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/iv_summoner_sub_item"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:src="@drawable/summoner_sub_item"
+            app:riv_corner_radius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/iv_summoner_item_slot6" />
 
@@ -174,11 +174,11 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/summoner_champ_icon"
+                android:id="@+id/iv_summoner_champ_icon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/summoner_chmap_icon"/>
+                app:riv_corner_radius="30dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
