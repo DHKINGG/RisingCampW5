@@ -6,12 +6,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.risingcampw5.Model.Match
+import com.example.risingcampw5.Model.Summoner
 import com.example.risingcampw5.databinding.ItemViewMatchMultiBinding
+import com.example.risingcampw5.databinding.ItemViewTopInfoBinding
 
 class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var matchDataList = mutableListOf<Match>()
+    var topInfoData = Summoner("", 0, 0, "", "", "", 0)
     lateinit var adapterContext: Context
     var summonerId: String = ""
+
+    inner class TopInfoHolder(val binding: ItemViewTopInfoBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: Summoner) {
+            binding.tvLevel.text = item.summonerLevel.toString()
+            binding.tvSummonerNickname.text = item.name
+        }
+    }
 
     inner class MatchHistoryHolder(val binding: ItemViewMatchMultiBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -31,22 +41,26 @@ class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-//        if (viewType == 0) {
-//            return MatchHistoryHolder(
-//                GameResultMultiBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//            )
-//        }
-        return MatchHistoryHolder(
-            ItemViewMatchMultiBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        when (viewType) {
+            0 -> {
+                return TopInfoHolder(
+                    ItemViewTopInfoBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+            else -> {
+                return MatchHistoryHolder(
+                    ItemViewMatchMultiBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -54,23 +68,18 @@ class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == 0) {
-            (holder as MatchHistoryHolder).bind(matchDataList)
+        when (position) {
+            0 -> (holder as TopInfoHolder).bind(topInfoData)
+            else -> (holder as MatchHistoryHolder).bind(matchDataList)
         }
         holder.setIsRecyclable(false)
     }
 
     override fun getItemCount(): Int {
-        return 1
+        return 2
     }
 
     fun setContext(context: Context) {
         adapterContext = context
-    }
-
-    fun setMatchData(matches: ArrayList<Match>) {
-        for (match in matches) {
-            matchDataList.add(match)
-        }
     }
 }

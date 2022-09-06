@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private var matches = arrayListOf<Match>()
     private var matchIds = arrayListOf<String>()
     private val adapter = MultiAdapter()
+    private lateinit var summoner: Summoner
     private var apiCall = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 val responseSummoner = response.body()
 
                 if (responseSummoner != null) {
+                    summoner = responseSummoner
                     summonerName = responseSummoner.name
                     summonerId = responseSummoner.id
                     summonerLevel = responseSummoner.summonerLevel
@@ -120,8 +122,9 @@ class MainActivity : AppCompatActivity() {
         if (apiCall == matchIds.size) {
             matches.sortByDescending { it.info.gameCreation }
             adapter.setContext(this)
-            adapter.setMatchData(matches)
+            adapter.matchDataList = matches
             adapter.summonerId = summonerId
+            adapter.topInfoData = summoner
             adapter.notifyDataSetChanged()
         }
     }
