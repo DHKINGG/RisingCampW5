@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.risingcampw5.Model.Match
 import com.example.risingcampw5.Model.Participants
-import com.example.risingcampw5.databinding.GameResultBinding
+import com.example.risingcampw5.databinding.ItemViewMatchBinding
 import kotlin.math.roundToInt
 
-class RecyclerViewAdapterMatchHistory :
-    RecyclerView.Adapter<RecyclerViewAdapterMatchHistory.Holder>() {
+class MatchAdapter :
+    RecyclerView.Adapter<MatchAdapter.Holder>() {
     // 1. 모델 리스트 생성(타입은 MutableList<Model>)
     var list = mutableListOf<Match>()
     var summonerId: String = ""
 
-    inner class Holder(val binding: GameResultBinding) :
+    inner class Holder(val binding: ItemViewMatchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         // 2. 뷰홀더 안에 bind함수 구현
         fun bind(item: Match, position: Int) {
@@ -73,9 +73,9 @@ class RecyclerViewAdapterMatchHistory :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RecyclerViewAdapterMatchHistory.Holder {
+    ): MatchAdapter.Holder {
         return Holder(
-            GameResultBinding.inflate(
+            ItemViewMatchBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -84,7 +84,7 @@ class RecyclerViewAdapterMatchHistory :
     }
 
     override fun onBindViewHolder(
-        holder: RecyclerViewAdapterMatchHistory.Holder,
+        holder: MatchAdapter.Holder,
         position: Int
     ) {
         holder.bind(list[position], position)

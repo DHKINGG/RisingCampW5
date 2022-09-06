@@ -2,6 +2,7 @@ package com.example.risingcampw5.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.risingcampw5.Adapter.MultiAdapter
@@ -22,7 +23,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var summonerId: String
     private var summonerLevel: Long = 0
     private var matches = arrayListOf<Match>()
-    private lateinit var matchIds: ArrayList<String>
+    private var matchIds = arrayListOf<String>()
+    private val adapter = MultiAdapter()
+    private var apiCall = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +33,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val adapter = MultiAdapter()
         binding.rvMain.layoutManager = LinearLayoutManager(this) // this : 현재 액티비티의 context를 가져옴
         adapter.setContext(this)
         binding.rvMain.adapter = adapter
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 val responseMatches = response.body()
 
                 if (responseMatches != null) {
-                    matchIds = responseMatches
+                    matchIds.addAll(responseMatches)
                     for (match in responseMatches) {
                         getMatch(match)
                     }
@@ -96,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Match>, response: Response<Match>) { // 데이터 받아오는게 성공시 이 함수 실행
                 val responseMatch = response.body()
 
+                apiCall++
                 if (responseMatch != null) {
                     for (participant in responseMatch.info.participants) {
                         if (participant.summonerId == summonerId) {
@@ -114,13 +117,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sortMatches() {
-        if (matches.size == matchIds.size) {
+        if (apiCall == matchIds.size) {
             matches.sortByDescending { it.info.gameCreation }
-
-            val adapter = MultiAdapter()
-            binding.rvMain.layoutManager = LinearLayoutManager(this) // this : 현재 액티비티의 context를 가져옴
             adapter.setContext(this)
             adapter.setMatchData(matches)
+            adapter.summonerId = summonerId
             adapter.notifyDataSetChanged()
         }
     }

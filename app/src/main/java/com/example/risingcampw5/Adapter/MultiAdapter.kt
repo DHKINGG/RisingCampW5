@@ -6,20 +6,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.risingcampw5.Model.Match
-import com.example.risingcampw5.databinding.GameResultBinding
-import com.example.risingcampw5.databinding.GameResultMultiBinding
+import com.example.risingcampw5.databinding.ItemViewMatchMultiBinding
 
 class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var matchDataList = mutableListOf<Match>()
     lateinit var adapterContext: Context
+    var summonerId: String = ""
 
-    inner class MatchHistoryHolder(val binding: GameResultMultiBinding) :
+    inner class MatchHistoryHolder(val binding: ItemViewMatchMultiBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MutableList<Match>) {
             binding.rvGameResultMain.layoutManager =
                 LinearLayoutManager(adapterContext, LinearLayoutManager.VERTICAL, false)
-            val recyclerAdapter = RecyclerViewAdapterMatchHistory()
+            val recyclerAdapter = MatchAdapter()
             recyclerAdapter.list = item
+            recyclerAdapter.summonerId = summonerId
             binding.rvGameResultMain.adapter = recyclerAdapter
         }
     }
@@ -40,7 +41,7 @@ class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //            )
 //        }
         return MatchHistoryHolder(
-            GameResultMultiBinding.inflate(
+            ItemViewMatchMultiBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
