@@ -32,7 +32,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:drawableLeft="@drawable/search_resize"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:hint="소환사검색"
             android:textColorHint="#797c8d"
             android:background="@drawable/edt_rounding"
