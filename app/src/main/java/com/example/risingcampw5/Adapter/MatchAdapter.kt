@@ -1,9 +1,11 @@
 package com.example.risingcampw5.Adapter
 
 import android.content.Context
+import android.graphics.Color.blue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.risingcampw5.Model.Match
@@ -20,13 +22,18 @@ class MatchAdapter :
     var summonerId: String = ""
     lateinit var adapterContext: Context
 
-    inner class Holder(val binding: ItemViewMatchBinding) :
+    inner class Holder(private val binding: ItemViewMatchBinding) :
         RecyclerView.ViewHolder(binding.root) {
         // 2. 뷰홀더 안에 bind함수 구현
         fun bind(item: Match, position: Int) {
             for (participant in item.info.participants) {
                 if (summonerId == participant.summonerId) {
                     binding.tvMatchHistoryIsWin.text = if (participant.win) "승" else "패"
+                    if(participant.win) binding.viewSummonerLose.visibility = View.GONE
+                    else binding.viewSummonerLose.visibility = View.VISIBLE
+                    binding.vTimeBar.setBackgroundColor(ContextCompat.getColor(adapterContext,
+                        if(participant.win) R.color.blue else R.color.red))
+
                     binding.tvSummonerKda.text =
                         "${participant.kills} / ${participant.deaths} / ${participant.assists}"
                     binding.tvKillParticipation.text =
@@ -135,4 +142,5 @@ class MatchAdapter :
     fun setContext(context: Context) {
         adapterContext = context
     }
+
 }

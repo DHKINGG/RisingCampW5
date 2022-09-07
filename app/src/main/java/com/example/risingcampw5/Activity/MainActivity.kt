@@ -1,5 +1,6 @@
 package com.example.risingcampw5.Activity
 
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.example.risingcampw5.Api.MatchApi
 import com.example.risingcampw5.Api.MatchByPuuidApi
 import com.example.risingcampw5.Api.SummonerApi
 import com.example.risingcampw5.Model.Match
+import com.example.risingcampw5.Model.SeasonTier
 import com.example.risingcampw5.Model.Summoner
 import com.example.risingcampw5.MyApplication
 import com.example.risingcampw5.databinding.ActivityMainBinding
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         binding.rvMain.layoutManager = LinearLayoutManager(this) // this : 현재 액티비티의 context를 가져옴
         adapter.setContext(this)
         binding.rvMain.adapter = adapter
+
+        setSeasonTier()
     }
 
     override fun onStart() {
@@ -60,6 +64,13 @@ class MainActivity : AppCompatActivity() {
                     summonerName = responseSummoner.name
                     summonerId = responseSummoner.id
                     summonerLevel = responseSummoner.summonerLevel
+
+                    var summonerList = MyApplication.prefs.getSummonerList(MyApplication.summonerListPrefKey)
+                    if (summonerList == null) {
+                        summonerList = mutableListOf()
+                    }
+                    summonerList.add(summoner)
+                    MyApplication.prefs.setSummonerList(MyApplication.summonerListPrefKey, summonerList)
 
                     val puuid = responseSummoner.puuid
                     getMatchByPuuid(puuid)
@@ -127,5 +138,20 @@ class MainActivity : AppCompatActivity() {
             adapter.topInfoData = summoner
             adapter.notifyDataSetChanged()
         }
+    }
+
+    private fun setSeasonTier() {
+        var seasonTier = mutableListOf<SeasonTier>()
+        seasonTier.add(SeasonTier("S2021", "GOLD 3"))
+        seasonTier.add(SeasonTier("S2020", "GOLD 4"))
+        seasonTier.add(SeasonTier("S9", "PLATINUM 4"))
+        seasonTier.add(SeasonTier("S8", "GOLD 5"))
+        seasonTier.add(SeasonTier("S7", "GOLD 3"))
+        seasonTier.add(SeasonTier("S6", "GOLD 4"))
+        seasonTier.add(SeasonTier("S5", "GOLD 5"))
+        seasonTier.add(SeasonTier("S4", "SILVER 2"))
+
+        adapter.seasonTierList = seasonTier
+        adapter.notifyDataSetChanged()
     }
 }
