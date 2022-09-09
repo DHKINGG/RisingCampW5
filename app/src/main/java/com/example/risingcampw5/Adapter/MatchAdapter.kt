@@ -44,6 +44,7 @@ class MatchAdapter :
                         binding.tvMultiKill.visibility = View.VISIBLE
                         binding.tvMultiKill.text = getMultiKillText(participant)
                     }
+
                     Glide.with(adapterContext)
                         .load("${MyApplication.championUrl}${participant.championName}.png")
                         .into(binding.ivSummonerChampIcon)

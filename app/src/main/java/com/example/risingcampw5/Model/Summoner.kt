@@ -9,5 +9,6 @@ data class Summoner(
     @SerializedName("name") var name: String,
     @SerializedName("id") var id: String,
     @SerializedName("puuid") var puuid: String,
-    @SerializedName("summonerLevel") var summonerLevel: Long
+    @SerializedName("summonerLevel") var summonerLevel: Long,
+    var isLike : Boolean
 )

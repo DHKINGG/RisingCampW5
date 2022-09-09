@@ -18,7 +18,7 @@ import com.example.risingcampw5.databinding.ItemViewTopInfoBinding
 
 class MultiAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var matchDataList = mutableListOf<Match>()
-    var topInfoData = Summoner("", 0, 0, "", "", "", 0)
+    var topInfoData = Summoner("", 0, 0, "", "", "", 0,false)
     lateinit var adapterContext: Context
     var summonerId: String = ""
     var seasonTierList = mutableListOf<SeasonTier>()

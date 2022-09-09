@@ -31,6 +31,10 @@ class SearchActivity : AppCompatActivity() {
         adapter.list = summonerList
         binding.rvSearchMain.adapter = adapter
 
+        binding.ivSideArrow.setOnClickListener {
+            finish()
+        }
+
 
         binding.edtSearchChamp.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {

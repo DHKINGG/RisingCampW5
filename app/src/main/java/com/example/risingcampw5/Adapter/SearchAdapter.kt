@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.risingcampw5.Model.Match
 import com.example.risingcampw5.Model.Summoner
 import com.example.risingcampw5.MyApplication
+import com.example.risingcampw5.R
 import com.example.risingcampw5.databinding.ItemViewMatchBinding
 import com.example.risingcampw5.databinding.ItemViewSearchBinding
 
@@ -23,39 +24,52 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.Holder>() {
                 .into(binding.ivSearchSummonerIcon)
 
             binding.tvSearchSummonerId.text = item.name
+
+            binding.btnSearchDelete.setOnClickListener {
+                list.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemRangeChanged(position, list.size)
+            }
+            binding.ivSearchFavorite.setOnClickListener {
+                if (item.isLike) {
+                    list[position].isLike = false
+                    binding.ivSearchFavorite.setImageResource(R.drawable.search_favorite_icon)
+                } else {
+                    list[position].isLike = true
+                    binding.ivSearchFavorite.setImageResource(R.drawable.search_favorit_blue_icon)
+                }
+            }
+        }
+    }
+
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): SearchAdapter.Holder {
+            return Holder(
+                ItemViewSearchBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
         }
 
+        override fun onBindViewHolder(
+            holder: SearchAdapter.Holder,
+            position: Int
+        ) {
+            holder.bind(list[position], position)
+        }
+
+
+        override fun getItemCount(): Int {
+            // 4. model리스트의 사이즈만큼 리턴
+            return list.size
+        }
+
+        fun setContext(context: Context) {
+            adapterContext = context
+
+        }
     }
-
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): SearchAdapter.Holder {
-        return Holder(
-            ItemViewSearchBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(
-        holder: SearchAdapter.Holder,
-        position: Int
-    ) {
-        holder.bind(list[position], position)
-    }
-
-
-    override fun getItemCount(): Int {
-        // 4. model리스트의 사이즈만큼 리턴
-        return list.size
-    }
-
-    fun setContext(context: Context) {
-        adapterContext = context
-
-    }
-}
