@@ -72,10 +72,14 @@ class MainActivity : AppCompatActivity() {
                     summonerList.add(summoner)
                     MyApplication.prefs.setSummonerList(MyApplication.summonerListPrefKey, summonerList)
 
+
                     val puuid = responseSummoner.puuid
                     getMatchByPuuid(puuid)
+
                 }
             }
+
+
 
             override fun onFailure(call: Call<Summoner>, t: Throwable) { // 데이터 받아오는게 실패시 이 함수 실행
                 TODO("Not yet implemented")

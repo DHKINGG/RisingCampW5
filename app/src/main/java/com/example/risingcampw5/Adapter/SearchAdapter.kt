@@ -29,7 +29,18 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.Holder>() {
                 list.removeAt(position)
                 notifyItemRemoved(position)
                 notifyItemRangeChanged(position, list.size)
+
+                var summonerList = MyApplication.prefs.getSummonerList(MyApplication.summonerListPrefKey)
+                if (summonerList == null) {
+                    summonerList = mutableListOf()
+                }
+                summonerList.removeAt(position)
+                MyApplication.prefs.setSummonerList(MyApplication.summonerListPrefKey, summonerList)
+
+
+
             }
+
             binding.ivSearchFavorite.setOnClickListener {
                 if (item.isLike) {
                     list[position].isLike = false

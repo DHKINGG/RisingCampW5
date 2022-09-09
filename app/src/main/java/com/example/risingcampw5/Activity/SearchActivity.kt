@@ -36,6 +36,8 @@ class SearchActivity : AppCompatActivity() {
         }
 
 
+
+
         binding.edtSearchChamp.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KEYCODE_ENTER) {
 
